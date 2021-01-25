@@ -20,10 +20,20 @@ automobileRoutes.get('/colors', (request, response) => {
   }
 });
 
+automobileRoutes.get('/placas', (request, response) => {
+  try {
+    const { placa } = request.query;
+    const findByPlacas = automobilesRepository.findByPlaca({ placa });
+    return response.json(findByPlacas);
+  } catch (error) {
+    return response.json({ message: error.message });
+  }
+});
+
 automobileRoutes.post('/', (request, response) => {
   try {
     const { placa, cor, marca } = request.body;
-    const findSameAutomobile = automobilesRepository.findByPlaca(placa);
+    const findSameAutomobile = automobilesRepository.validationOfPlaca(placa);
     const automobile = automobilesRepository.create({ placa, cor, marca });
     return response.json(automobile);
   } catch (error) {

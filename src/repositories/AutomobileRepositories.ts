@@ -18,6 +18,10 @@ interface FindAutomobileByColor {
   cor: string;
 }
 
+interface FindByPlacaDTO {
+  placa: string;
+}
+
 class AutomobileRepositories {
   private automobiles: Automobile[];
 
@@ -32,7 +36,7 @@ class AutomobileRepositories {
   }
 
   // Esse método não vai permitir que o usuário cadastre um novo carro com a mesma carro.
-  public findByPlaca(placa: string): Automobile | null {
+  public validationOfPlaca(placa: string): Automobile | null {
     const findAutomobile = this.automobiles.find(
       automobile => automobile.placa === placa
     );
@@ -61,6 +65,14 @@ class AutomobileRepositories {
       ? this.automobiles.filter(automovel =>
           automovel.cor.includes(cor.toLocaleLowerCase())
         )
+      : this.automobiles;
+
+    return results;
+  }
+
+  public findByPlaca({ placa }: FindByPlacaDTO): Automobile[] {
+    const results = placa
+      ? this.automobiles.filter(automovel => automovel.placa.includes(placa))
       : this.automobiles;
 
     return results;
