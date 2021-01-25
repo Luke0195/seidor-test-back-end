@@ -1,6 +1,5 @@
 import { Router } from 'express';
 import AutomobileRepositories from '../repositories/AutomobileRepositories';
-import Automobile from '../models/Automobile';
 
 const automobileRoutes = Router();
 const automobilesRepository = new AutomobileRepositories();
