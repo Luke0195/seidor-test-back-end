@@ -1,6 +1,7 @@
-import { fi } from "date-fns/locale";
-import Automobile from "../models/Automobile";
-import automobileRoutes from "../routes/automobile.routes";
+import { fi } from 'date-fns/locale';
+import { request } from 'express';
+import Automobile from '../models/Automobile';
+import automobileRoutes from '../routes/automobile.routes';
 
 interface CreateAutomobileDTO {
   // Data transfer Object
@@ -11,6 +12,10 @@ interface CreateAutomobileDTO {
 
 interface FindAutomobileBYIdDTO {
   id: string;
+}
+
+interface FindAutomobileByColor {
+  cor: string;
 }
 
 class AutomobileRepositories {
@@ -29,11 +34,11 @@ class AutomobileRepositories {
   // Esse método não vai permitir que o usuário cadastre um novo carro com a mesma carro.
   public findByPlaca(placa: string): Automobile | null {
     const findAutomobile = this.automobiles.find(
-      (automobile) => automobile.placa === placa
+      automobile => automobile.placa === placa
     );
 
     if (findAutomobile) {
-      throw new Error("This automobile is already exists");
+      throw new Error('This automobile is already exists');
     }
 
     return null;
@@ -41,14 +46,24 @@ class AutomobileRepositories {
 
   public findOne({ id }: FindAutomobileBYIdDTO): Automobile | null {
     const findAutomobile = this.automobiles.find(
-      (automobile) => automobile.id === id
+      automobile => automobile.id === id
     );
 
     if (!findAutomobile) {
-      throw new Error("This automobile was not found");
+      throw new Error('This automobile was not found');
     }
 
     return findAutomobile;
+  }
+
+  public findByColor({ cor }: FindAutomobileByColor): Automobile[] {
+    const results = cor
+      ? this.automobiles.filter(automovel =>
+          automovel.cor.includes(cor.toLocaleLowerCase())
+        )
+      : this.automobiles;
+
+    return results;
   }
 
   public findAll(): Automobile[] {
@@ -57,11 +72,11 @@ class AutomobileRepositories {
 
   public delete({ id }: FindAutomobileBYIdDTO): void {
     const findAutomobile = this.automobiles.findIndex(
-      (automobile) => automobile.id === id
+      automobile => automobile.id === id
     );
 
     if (findAutomobile < 0) {
-      throw new Error("This automobile was not found");
+      throw new Error('This automobile was not found');
     }
     this.automobiles.splice(findAutomobile, 1);
   }
@@ -71,10 +86,10 @@ class AutomobileRepositories {
     { cor, marca, placa }: CreateAutomobileDTO
   ): Automobile | null {
     const findIndex = this.automobiles.findIndex(
-      (automobile) => automobile.id === id
+      automobile => automobile.id === id
     );
     if (findIndex < 0) {
-      throw new Error("This automobile was not found");
+      throw new Error('This automobile was not found');
     }
 
     const newAutomobile = new Automobile({ cor, marca, placa });

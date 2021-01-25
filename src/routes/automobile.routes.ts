@@ -1,11 +1,26 @@
-import { Router } from "express";
-import AutomobileRepositories from "../repositories/AutomobileRepositories";
-import Automobile from "../models/Automobile";
+import { Router } from 'express';
+import AutomobileRepositories from '../repositories/AutomobileRepositories';
+import Automobile from '../models/Automobile';
 
 const automobileRoutes = Router();
 const automobilesRepository = new AutomobileRepositories();
 
-automobileRoutes.post("/", (request, response) => {
+automobileRoutes.get('/', (request, response) => {
+  const automobiles = automobilesRepository.findAll();
+  return response.json(automobiles);
+});
+
+automobileRoutes.get('/colors', (request, response) => {
+  try {
+    const { cor } = request.query;
+    const filterCors = automobilesRepository.findByColor({ cor });
+    return response.json(filterCors);
+  } catch (error) {
+    return response.json({ message: error.message });
+  }
+});
+
+automobileRoutes.post('/', (request, response) => {
   try {
     const { placa, cor, marca } = request.body;
     const findSameAutomobile = automobilesRepository.findByPlaca(placa);
@@ -16,7 +31,7 @@ automobileRoutes.post("/", (request, response) => {
   }
 });
 
-automobileRoutes.get("/:id", (request, response) => {
+automobileRoutes.get('/:id', (request, response) => {
   try {
     const { id } = request.params;
     const automobile = automobilesRepository.findOne({ id });
@@ -26,12 +41,7 @@ automobileRoutes.get("/:id", (request, response) => {
   }
 });
 
-automobileRoutes.get("/", (request, response) => {
-  const automobiles = automobilesRepository.findAll();
-  return response.json(automobiles);
-});
-
-automobileRoutes.put("/:id", (request, response) => {
+automobileRoutes.put('/:id', (request, response) => {
   try {
     const { id } = request.params;
     const { placa, cor, marca } = request.body;
@@ -46,11 +56,11 @@ automobileRoutes.put("/:id", (request, response) => {
   }
 });
 
-automobileRoutes.delete("/:id", (request, response) => {
+automobileRoutes.delete('/:id', (request, response) => {
   try {
     const { id } = request.params;
     const automobile = automobilesRepository.delete({ id });
-    return response.json({ message: "This automobile was deleted" });
+    return response.json({ message: 'This automobile was deleted' });
   } catch (error) {
     return response.status(400).json({ message: error.message });
   }
