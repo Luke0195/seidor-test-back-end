@@ -8,9 +8,10 @@ interface CreateAutomobileDTO {
   marca: string;
 }
 
-interface FindAutomobileDTO {
+interface FindAutomobileBYIdDTO {
   id: string;
 }
+
 class AutomobileRepositories {
   private automobiles: Automobile[];
 
@@ -24,6 +25,7 @@ class AutomobileRepositories {
     return automobile;
   }
 
+  // Esse método não vai permitir que o usuário cadastre um novo carro com a mesma carro.
   public findByPlaca(placa: string): Automobile | null {
     const findAutomobile = this.automobiles.find(
       (automobile) => automobile.placa === placa
@@ -36,7 +38,7 @@ class AutomobileRepositories {
     return null;
   }
 
-  public findOne({ id }: FindAutomobileDTO): Automobile | null {
+  public findOne({ id }: FindAutomobileBYIdDTO): Automobile | null {
     const findAutomobile = this.automobiles.find(
       (automobile) => automobile.id === id
     );
@@ -46,6 +48,21 @@ class AutomobileRepositories {
     }
 
     return findAutomobile;
+  }
+
+  public findAll(): Automobile[] {
+    return this.automobiles;
+  }
+
+  public delete({ id }: FindAutomobileBYIdDTO): void {
+    const findAutomobile = this.automobiles.findIndex(
+      (automobile) => automobile.id === id
+    );
+
+    if (findAutomobile < 0) {
+      throw new Error("This automobile was not found");
+    }
+    this.automobiles.splice(findAutomobile, 1);
   }
 }
 
