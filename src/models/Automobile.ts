@@ -9,7 +9,7 @@ class Automobile {
 
   marca: string;
 
-  constructor(placa: string, cor: string, marca: string) {
+  constructor({ placa, cor, marca }: Omit<Automobile, "id">) {
     this.id = uuid();
     this.placa = placa;
     this.cor = cor;
