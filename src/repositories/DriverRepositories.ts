@@ -25,6 +25,22 @@ class DriverRepositories {
 
     return findDriverById || null;
   }
+
+  public findAll(): Driver[] | null {
+    return this.drivers;
+  }
+
+  public findOne(nome: string): Driver[] | null {
+    const findDriver = nome
+      ? this.drivers.filter(driver => driver.nome.includes(nome))
+      : this.drivers;
+
+    if (!findDriver) {
+      throw new Error('This driver does not exists');
+    }
+
+    return findDriver || null;
+  }
 }
 
 export default DriverRepositories;

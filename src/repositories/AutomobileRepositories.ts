@@ -78,10 +78,6 @@ class AutomobileRepositories {
     return results;
   }
 
-  public findAll(): Automobile[] {
-    return this.automobiles;
-  }
-
   public delete({ id }: FindAutomobileBYIdDTO): void {
     const findAutomobile = this.automobiles.findIndex(
       automobile => automobile.id === id
