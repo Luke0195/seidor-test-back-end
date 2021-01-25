@@ -31,6 +31,21 @@ automobileRoutes.get("/", (request, response) => {
   return response.json(automobiles);
 });
 
+automobileRoutes.put("/:id", (request, response) => {
+  try {
+    const { id } = request.params;
+    const { placa, cor, marca } = request.body;
+    const automobile = automobilesRepository.update(
+      { id },
+      { cor, marca, placa }
+    );
+
+    return response.json(automobile);
+  } catch (error) {
+    return response.status(400).json({ message: error.message });
+  }
+});
+
 automobileRoutes.delete("/:id", (request, response) => {
   try {
     const { id } = request.params;

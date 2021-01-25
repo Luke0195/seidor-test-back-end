@@ -1,5 +1,6 @@
 import { fi } from "date-fns/locale";
 import Automobile from "../models/Automobile";
+import automobileRoutes from "../routes/automobile.routes";
 
 interface CreateAutomobileDTO {
   // Data transfer Object
@@ -63,6 +64,23 @@ class AutomobileRepositories {
       throw new Error("This automobile was not found");
     }
     this.automobiles.splice(findAutomobile, 1);
+  }
+
+  public update(
+    { id }: FindAutomobileBYIdDTO,
+    { cor, marca, placa }: CreateAutomobileDTO
+  ): Automobile | null {
+    const findIndex = this.automobiles.findIndex(
+      (automobile) => automobile.id === id
+    );
+    if (findIndex < 0) {
+      throw new Error("This automobile was not found");
+    }
+
+    const newAutomobile = new Automobile({ cor, marca, placa });
+
+    this.automobiles[findIndex] = newAutomobile;
+    return newAutomobile;
   }
 }
 
