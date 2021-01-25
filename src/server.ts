@@ -1,12 +1,10 @@
-import express from 'express';
+import express from "express";
+import routes from "./routes/index";
 
 const app = express();
+app.use(express.json());
+app.use(routes);
 
-app.get('/', (request, response) =>{
-  return response.json({messsage: 'Projeto Sidor Back-end'});
+app.listen(3334, () => {
+  console.log("Server is runing");
 });
-
-
-app.listen(3334, () =>{
-  console.log('Server is runing');
-})
