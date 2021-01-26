@@ -26,7 +26,7 @@ driverRoutes.get('/:id', (request, response) => {
 driverRoutes.get('/', (request, response) => {
   try {
     const { nome } = request.query;
-    const driver = driverRepository.findDriver(nome);
+    const driver = driverRepository.findDriver(nome as string);
     return response.json(driver);
   } catch (error) {
     return response.status(400).json({ message: error.message });
