@@ -8,17 +8,19 @@ automobileRoutes.get('/', (request, response) => {
   try {
     const { cor } = request.query;
     const filterCors = automobilesRepository.findByColor({ cor });
+
     return response.json(filterCors);
   } catch (error) {
     return response.json({ message: error.message });
   }
 });
 
-automobileRoutes.get('/', (request, response) => {
+automobileRoutes.get('/marcas', (request, response) => {
   try {
-    const { placa } = request.query;
-    const findByPlacas = automobilesRepository.findByPlaca({ placa });
-    return response.json(findByPlacas);
+    const { marca } = request.query;
+    const filterByMarca = automobilesRepository.findByMarca({ marca });
+
+    return response.json(filterByMarca);
   } catch (error) {
     return response.json({ message: error.message });
   }

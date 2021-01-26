@@ -15,8 +15,8 @@ interface FindAutomobileByColor {
   cor: string;
 }
 
-interface FindByPlacaDTO {
-  placa: string;
+interface FindByMarcaDTO {
+  marca: string;
 }
 
 class AutomobileRepository {
@@ -59,17 +59,17 @@ class AutomobileRepository {
 
   public findByColor({ cor }: FindAutomobileByColor): Automobile[] {
     const results = cor
-      ? this.automobiles.filter(automovel =>
-          automovel.cor.includes(cor.toLocaleLowerCase())
-        )
+      ? this.automobiles.filter(automovel => automovel.cor.includes(cor))
       : this.automobiles;
 
     return results;
   }
 
-  public findByPlaca({ placa }: FindByPlacaDTO): Automobile[] {
-    const results = placa
-      ? this.automobiles.filter(automovel => automovel.placa.includes(placa))
+  public findByMarca({ marca }: FindByMarcaDTO): Automobile[] {
+    const results = marca
+      ? this.automobiles.filter(automovel =>
+          automovel.marca.includes(marca.toLocaleLowerCase())
+        )
       : this.automobiles;
 
     return results;
