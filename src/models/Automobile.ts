@@ -1,4 +1,4 @@
-import { v4 as uuid } from "uuid";
+import { v4 as uuid } from 'uuid';
 
 class Automobile {
   id: string;
@@ -9,7 +9,7 @@ class Automobile {
 
   marca: string;
 
-  constructor({ placa, cor, marca }: Omit<Automobile, "id">) {
+  constructor({ placa, cor, marca }: Omit<Automobile, 'id'>) {
     this.id = uuid();
     this.placa = placa;
     this.cor = cor;
