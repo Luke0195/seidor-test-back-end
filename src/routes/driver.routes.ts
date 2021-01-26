@@ -32,4 +32,14 @@ driverRoutes.get('/', (request, response) => {
     return response.status(400).json({ message: error.message });
   }
 });
+
+driverRoutes.delete('/:id', (request, response) => {
+  try {
+    const { id } = request.params;
+    const findDriver = driverRepository.delete(id);
+    return response.status(200).json({ message: 'This driver was deleted' });
+  } catch (error) {
+    return response.json({ message: error.message });
+  }
+});
 export default driverRoutes;

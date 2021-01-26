@@ -26,10 +26,6 @@ class DriverRepositories {
     return findDriverById || null;
   }
 
-  public findAll(): Driver[] | null {
-    return this.drivers;
-  }
-
   public findOne(nome: string): Driver[] | null {
     const findDriver = nome
       ? this.drivers.filter(driver => driver.nome.includes(nome))
@@ -40,6 +36,15 @@ class DriverRepositories {
     }
 
     return findDriver || null;
+  }
+
+  public delete(id: string): void {
+    const findDriver = this.drivers.findIndex(driver => driver.id === id);
+
+    if (findDriver < 0) {
+      throw new Error('This driver does not exists');
+    }
+    this.drivers.splice(findDriver, 1);
   }
 }
 
