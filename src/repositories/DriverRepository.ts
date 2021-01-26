@@ -3,7 +3,7 @@ import Driver from '../models/Driver';
 interface CreateDriverDTO {
   nome: string;
 }
-class DriverRepositories {
+class DriverRepository {
   private drivers: Driver[];
 
   constructor() {
@@ -11,9 +11,9 @@ class DriverRepositories {
   }
 
   public create({ nome }: CreateDriverDTO): Driver {
-    const driver = new Driver({ nome });
-    this.drivers.push(driver);
-    return driver;
+    const createDriver = new Driver({ nome });
+    this.drivers.push(createDriver);
+    return createDriver;
   }
 
   public findById(id: string): Driver | null {
@@ -26,7 +26,7 @@ class DriverRepositories {
     return findDriverById || null;
   }
 
-  public findOne(nome: string): Driver[] | null {
+  public findDriver(nome: string): Driver[] | null {
     const findDriver = nome
       ? this.drivers.filter(driver => driver.nome.includes(nome))
       : this.drivers;
@@ -38,7 +38,7 @@ class DriverRepositories {
     return findDriver || null;
   }
 
-  public delete(id: string): void {
+  public deleteDriver(id: string): void {
     const findDriver = this.drivers.findIndex(driver => driver.id === id);
 
     if (findDriver < 0) {
@@ -46,6 +46,20 @@ class DriverRepositories {
     }
     this.drivers.splice(findDriver, 1);
   }
+
+  public uppdateDriver(id: string, nome: string): Driver | null {
+    const findDriver = this.drivers.findIndex(driver => driver.id === id);
+
+    if (findDriver < 0) {
+      throw new Error('This driver does not exists');
+    }
+
+    const updatedDrive = new Driver({ nome });
+
+    this.drivers[findDriver] = updatedDrive;
+
+    return updatedDrive;
+  }
 }
 
-export default DriverRepositories;
+export default DriverRepository;

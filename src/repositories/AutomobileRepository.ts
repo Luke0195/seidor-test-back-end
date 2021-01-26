@@ -1,7 +1,4 @@
-import { fi } from 'date-fns/locale';
-import { request } from 'express';
 import Automobile from '../models/Automobile';
-import automobileRoutes from '../routes/automobile.routes';
 
 interface CreateAutomobileDTO {
   // Data transfer Object
@@ -22,7 +19,7 @@ interface FindByPlacaDTO {
   placa: string;
 }
 
-class AutomobileRepositories {
+class AutomobileRepository {
   private automobiles: Automobile[];
 
   constructor() {
@@ -107,4 +104,4 @@ class AutomobileRepositories {
   }
 }
 
-export default AutomobileRepositories;
+export default AutomobileRepository;

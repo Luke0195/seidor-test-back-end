@@ -1,15 +1,10 @@
 import { Router } from 'express';
-import AutomobileRepositories from '../repositories/AutomobileRepositories';
+import AutomobileRepositories from '../repositories/AutomobileRepository';
 
 const automobileRoutes = Router();
 const automobilesRepository = new AutomobileRepositories();
 
 automobileRoutes.get('/', (request, response) => {
-  const automobiles = automobilesRepository.findAll();
-  return response.json(automobiles);
-});
-
-automobileRoutes.get('/colors', (request, response) => {
   try {
     const { cor } = request.query;
     const filterCors = automobilesRepository.findByColor({ cor });
@@ -19,7 +14,7 @@ automobileRoutes.get('/colors', (request, response) => {
   }
 });
 
-automobileRoutes.get('/placas', (request, response) => {
+automobileRoutes.get('/', (request, response) => {
   try {
     const { placa } = request.query;
     const findByPlacas = automobilesRepository.findByPlaca({ placa });
