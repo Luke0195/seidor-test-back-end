@@ -34,9 +34,9 @@ O comando para abrir o terminal é CTRL + SHIFT + P
 Se você estiver utilizando o npm como gerenciador  de pacotes, o processo é um pouco diferente basta excluir o arquivo yarn.lock, após,  o arquivo ter sido deletado basta executar o comando npm install
 para instalar as dependências necessárias.
 
-#### Script de Execução do projeto
- ###### Para executar a aplicação no yarn basta utilizar o comando yarn dev:server
- ###### Para executar a aplicação no npm basta utilizar o comando npx run dev:server
+### Script de Execução do projeto
+ #### Para executar a aplicação no yarn basta utilizar o comando yarn dev:server
+ #### Para executar a aplicação no npm basta utilizar o comando npx run dev:server
 
 
 # Informação Importante!
@@ -45,16 +45,36 @@ se o servidor for reiniciado  todas as informações salvas serão deletadas.
 
 #  Chamadas da aplicação
 
-A aplição foi divida em 3 camadas models , routes, repositories
+A aplicação foi divida em 3 camadas models , routes, repositories
 
 ### Models
  Representação de uma entidade na base de dados.
 
 ### Repositories
 
- Responsável pelas as informações persistidas na base de dados(nesse caso em questão a memória).
+ Responsável pelas as informações persistidas na base de dados(nesse caso em questão é a memória).
 
 ### Routes
  Rotas da aplicação baseada em cada domínio.
+
+ #### Rotas da aplicação
+
+ **/automobiles**  -> É responsavel por todas as rotas de automoveis
+
+##### POST
+**/automobiles** ->  Criar um novo automovél é necessário passar a placa, cor e marca do veículo
+para se criar um novo automóvel foi adicionado um campo id após a criação da informação para auxiliar o
+usuário na busca, atualização e na remoção de um automóvel.
+
+#### GET
+**/automobiles** -> Retorna todos os carros cadastrados na aplicação, nessa rota também é possivel filtrar todos dos veículos por cor, mas para isso acontecer é necessário passar um parâmetro de cor.
+
+#### GET
+**/automobiles/marcas** -> Retorna todas os veiculos cadastrados, tambémm é possivel passar um parâmetro por marca para realizar o filtro.
+
+### GET
+
+**/automobiles/:id**  -> Retorna uma veículo por  único referente ao id informado.
+
 
 
