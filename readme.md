@@ -5,7 +5,7 @@ Consiste em um sistema de agendamento de reservas para controlar a utilização 
 
 ## Como fazer o download do projeto.
 
- # 1ª Opção (Observação é necessário ter o git instalado na maquina para executar essa opção)
+ #### 1ª Opção (Observação é necessário ter o git instalado na maquina para executar essa opção)
 
 <li> Utilize o comando  git clone https://github.com/Luke0195/seidor-test-back-end.git  no seu terminal para fazer o download do repositório </li>
 
@@ -13,7 +13,7 @@ Consiste em um sistema de agendamento de reservas para controlar a utilização 
 
 <li>  A maioria dos editores seguem  o seguinte modelo File > Open Folder > (arquivo do projeto descompactado) </li>
 
-# 2º Opção
+#### 2º Opção
 <li>  Clique no botão verde(Code)  e depois clique no botão Download ZIP para ser capaz de fazer o download do  projeto compactado  </li>
 
 <li> Com o projeto baixado em sua maquina basta extraiar o arquivo para o  seu local desejado e  abrir  projeto pelo seu editor de codigo </li>
