@@ -73,8 +73,15 @@ usuário na busca, atualização e na remoção de um automóvel.
 **/automobiles/marcas** -> Retorna todas os veiculos cadastrados, tambémm é possivel passar um parâmetro por marca para realizar o filtro.
 
 ### GET
-
 **/automobiles/:id**  -> Retorna uma veículo por  único referente ao id informado.
+
+### PUT
+
+**/automobiles/:id** -> Atualiza o veículo atualizado baseado no id informado.
+
+### DELETE
+
+**/automobiles/:id** -> Delete o veículo atualizado baseado no id informado.
 
 
 
