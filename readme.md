@@ -112,4 +112,5 @@ usuário na busca, atualização e na remoção de um automóvel.
 ### POST
 **/appointments** -> Cria um novo agendamento
 
+### GET
 **/appoitments** -> Lista todos os agendamentos cadastrados
