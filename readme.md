@@ -59,6 +59,8 @@ A aplicação foi divida em 3 camadas models , routes, repositories
 
  #### Rotas da aplicação
 
+ ## Automóvel
+
  **/automobiles**  -> É responsavel por todas as rotas de automoveis
 
 ##### POST
@@ -81,7 +83,33 @@ usuário na busca, atualização e na remoção de um automóvel.
 
 ### DELETE
 
-**/automobiles/:id** -> Delete o veículo atualizado baseado no id informado.
+**/automobiles/:id** -> Delete o veículo  baseado no id informado.
+
+## Motoristas
+
+ **/drivers**  -> É responsavel por todas as rotas de motoristas.
+
+#### POST
+ **/drivers** -> Cria um novo motorista é necessário informar o nome do motorista na requisição.
+
+#### GET
+
+**/drivers** -> Lista todos os motoristas cadastrados na aplicação
 
 
+### GET
+**/drivers/:id** -> Retorna um motorista baseado no id informado.
 
+### PUT
+**/drivers/:id** ->  Atualiza um motorista baseado no id informado.
+
+### DELETE
+**/drivers/:id** -> Deleta o motorista baseado no id informado.
+
+
+## Agendamento
+
+### POST
+**/appointments** -> Cria um novo agendamento
+
+**/appoitments** -> Lista todos os agendamentos cadastrados

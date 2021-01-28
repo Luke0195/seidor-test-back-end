@@ -3,6 +3,7 @@ import DriverRepository from '../repositories/DriverRepository';
 
 const driverRoutes = Router();
 const driverRepository = new DriverRepository();
+
 driverRoutes.post('/', (request, response) => {
   try {
     const { nome } = request.body;
