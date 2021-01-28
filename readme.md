@@ -43,7 +43,7 @@ para instalar as dependências necessárias.
 Todos os dados que estão sendo persistidos na aplicação são estão sendo salvos em memória, logo
 se o servidor for reiniciado  todas as informações salvas serão deletadas.
 
-#  Chamadas da aplicação
+#  Camadas da aplicação
 
 A aplicação foi divida em 3 camadas models , routes, repositories
 
